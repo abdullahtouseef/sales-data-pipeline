@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: my_first_dbt_model
+    description: "Cleaned sales data"
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+      - name: city
+        data_tests:
+          - not_null
+      - name: product
+        data_tests:
+          - not_null
+
+  - name: my_second_dbt_model
+    description: "Sales summary by city and product"
+    columns:
+      - name: city
+        data_tests:
+          - not_null
+      - name: product
+        data_tests:
+          - not_null
