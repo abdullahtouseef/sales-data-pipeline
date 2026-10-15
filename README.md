@@ -13,23 +13,27 @@ This project demonstrates a sales data pipeline built with Azure Databricks, Del
 
 ## Pipeline Architecture
 
-```text
-Raw Sales Data (1,000 records)
-           |
-           v
-Databricks Delta Table (sales_raw)
-           |
-           v
-dbt Cleaning and Transformation
-           |
-           v
-Clean Sales Data
-           |
-           v
-Sales Summary by City and Product
-           |
-           v
-Data Quality Tests and Databricks Job
+```mermaid
+flowchart LR
+    A["Raw Sales Data<br/>1,000 records"] --> B["Azure Databricks<br/>Delta Table: sales_raw"]
+    B --> C["dbt Cleaning<br/>my_first_dbt_model"]
+    C --> D["dbt Aggregation<br/>my_second_dbt_model"]
+    D --> E["Sales Summary<br/>By City and Product"]
+
+    C -.-> F["Data Quality Tests"]
+    D -.-> F
+    F --> G["6 Tests Passed"]
+
+    H["Databricks Job<br/>Daily at 9:00 AM PKT"] -.-> C
+
+    style A fill:#E8F1FF,stroke:#3973AC,color:#17365D
+    style B fill:#DDF5F0,stroke:#218C7A,color:#164E43
+    style C fill:#E8F1FF,stroke:#3973AC,color:#17365D
+    style D fill:#E8F1FF,stroke:#3973AC,color:#17365D
+    style E fill:#DDF5F0,stroke:#218C7A,color:#164E43
+    style F fill:#FFF0D9,stroke:#D99022,color:#704400
+    style G fill:#DDF5F0,stroke:#218C7A,color:#164E43
+    style H fill:#F0E8FF,stroke:#8561B5,color:#40276A
 ```
 
 ## Dataset
